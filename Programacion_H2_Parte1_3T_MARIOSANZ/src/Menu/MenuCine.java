@@ -9,7 +9,7 @@ public class MenuCine {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
-        do {
+        do { // Menú principal que se ejecuta al menos una vez
             System.out.println("\n--- MENÚ CINE ---");
             System.out.println("1 - Ver películas");
             System.out.println("2 - Salir");
@@ -37,12 +37,12 @@ public class MenuCine {
                         + "FROM peliculas p "
                         + "JOIN directores d ON p.id_director = d.id";
 
-        try {
+        try { // Código para usar lso datos devueltos por la consulta
             Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(consulta);
 
-            while (rs.next()) {
+            while (rs.next()) { // Declaración de variablaes usando los datos de la consulta
                 String codigo = rs.getString("codigo");
                 String titulo = rs.getString("titulo");
                 String genero = rs.getString("genero");
@@ -50,6 +50,7 @@ public class MenuCine {
                 String clasificacion = rs.getString("clasificacion");
                 String director = rs.getString("director");
                 
+                // Consulta con los datos
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
                 System.out.println("Código: " + codigo + " | Título: " + titulo + " | Género: " + genero + " | Duración: " + duracion + " min | Clasificación: " + clasificacion + " | Director: " + director);
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
